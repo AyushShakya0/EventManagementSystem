@@ -1,23 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Event;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
-        return view('events.index', compact('events'));
-    }
-
-    public function create()
-    {
-        $categories = Category::all();
-        return view('events.create', compact('categories'));
+        return Event::with('category', 'attendees')->get();
     }
 
     public function store(Request $request)
@@ -31,19 +24,13 @@ class EventController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        Event::create($validatedData);
-        return redirect()->route('events.index')->with('success', 'Event created successfully');
+        $event = Event::create($validatedData);
+        return response()->json($event, 201);
     }
 
     public function show(Event $event)
     {
-        return view('events.show', compact('event'));
-    }
-
-    public function edit(Event $event)
-    {
-        $categories = Category::all();
-        return view('events.edit', compact('event', 'categories'));
+        return $event->load('category', 'attendees');
     }
 
     public function update(Request $request, Event $event)
@@ -58,12 +45,12 @@ class EventController extends Controller
         ]);
 
         $event->update($validatedData);
-        return redirect()->route('events.index')->with('success', 'Event updated successfully');
+        return response()->json($event, 200);
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
-        return redirect()->route('events.index')->with('success', 'Event deleted successfully');
+        return response()->json(null, 204);
     }
 }

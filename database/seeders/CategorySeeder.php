@@ -13,9 +13,20 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'Conference']);
-        Category::create(['name' => 'Workshop']);
-        Category::create(['name' => 'Seminar']);
+        $categories = [
+            ['name' => 'Music'],
+            ['name' => 'Sports'],
+            ['name' => 'Arts & Crafts'],
+            ['name' => 'Education'],
+            ['name' => 'Technology'],
+            ['name' => 'Food & Drink'],
+            ['name' => 'Health & Wellness'],
+            ['name' => 'Business'],
+        ];
+
+        foreach ($categories as $category) {
+            Category::create($category);
+        }
     }
 
 }

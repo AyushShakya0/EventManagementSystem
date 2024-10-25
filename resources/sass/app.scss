@@ -1,0 +1,15 @@
+// resources/sass/app.scss
+
+@use 'variables'; // Ensure this path is correct
+@use 'bootstrap/scss/bootstrap';
+
+// Now you can write your custom styles
+body {
+    font-family: variables.$font-family-base; // Use the variable from your variables file
+    background-color: variables.$body-bg; // Example variable usage
+}
+
+// Additional custom styles
+.navbar {
+    background-color: variables.$navbar-bg; // Example usage
+}

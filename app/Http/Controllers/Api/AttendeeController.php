@@ -1,23 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Attendee;
-use App\Models\Event;
 use Illuminate\Http\Request;
 
 class AttendeeController extends Controller
 {
     public function index()
     {
-        $attendees = Attendee::all();
-        return view('attendees.index', compact('attendees'));
-    }
-
-    public function create()
-    {
-        $events = Event::all();
-        return view('attendees.create', compact('events'));
+        return Attendee::with('event')->get();
     }
 
     public function store(Request $request)
@@ -29,19 +22,13 @@ class AttendeeController extends Controller
             'event_id' => 'required|exists:events,id',
         ]);
 
-        Attendee::create($validatedData);
-        return redirect()->route('attendees.index')->with('success', 'Attendee created successfully');
+        $attendee = Attendee::create($validatedData);
+        return response()->json($attendee, 201);
     }
 
     public function show(Attendee $attendee)
     {
-        return view('attendees.show', compact('attendee'));
-    }
-
-    public function edit(Attendee $attendee)
-    {
-        $events = Event::all();
-        return view('attendees.edit', compact('attendee', 'events'));
+        return $attendee->load('event');
     }
 
     public function update(Request $request, Attendee $attendee)
@@ -54,12 +41,12 @@ class AttendeeController extends Controller
         ]);
 
         $attendee->update($validatedData);
-        return redirect()->route('attendees.index')->with('success', 'Attendee updated successfully');
+        return response()->json($attendee, 200);
     }
 
     public function destroy(Attendee $attendee)
     {
         $attendee->delete();
-        return redirect()->route('attendees.index')->with('success', 'Attendee deleted successfully');
+        return response()->json(null, 204);
     }
 }

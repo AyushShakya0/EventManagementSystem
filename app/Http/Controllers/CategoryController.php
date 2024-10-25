@@ -10,42 +10,47 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return response()->json($categories);
+        return view('categories.index', compact('categories'));
     }
 
-    public function show($id)
+    public function create()
     {
-        $category = Category::findOrFail($id);
-        return response()->json($category);
+        return view('categories.create');
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|unique:categories,name',
+            'name' => 'required|string',
         ]);
 
         Category::create($validatedData);
-        return response()->json(['message' => 'Category created successfully'], 201);
+        return redirect()->route('categories.index')->with('success', 'Category created successfully');
     }
 
-    public function update(Request $request, $id)
+    public function show(Category $category)
     {
-        $category = Category::findOrFail($id);
+        return view('categories.show', compact('category'));
+    }
 
+    public function edit(Category $category)
+    {
+        return view('categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, Category $category)
+    {
         $validatedData = $request->validate([
-            'name' => 'required|string|unique:categories,name,' . $category->id,
+            'name' => 'required|string',
         ]);
 
         $category->update($validatedData);
-        return response()->json(['message' => 'Category updated successfully']);
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::findOrFail($id);
         $category->delete();
-
-        return response()->json(['message' => 'Category deleted successfully']);
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
     }
 }

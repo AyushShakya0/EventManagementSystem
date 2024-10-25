@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('phone');
             $table->foreignId('event_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('attendees');
     }
 };
