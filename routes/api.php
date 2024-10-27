@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\AttendeeController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\AttendeeController;
+use App\Http\Controllers\Api\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/signup',[ApiController::class,'registerUser']);
-Route::post('/login',[ApiController::class,'loginUser']);
+Route::post('/signup', [ApiController::class, 'registerUser']);
+Route::post('/login', [ApiController::class, 'loginUser']);
 
 
 
 Route::middleware('auth:sanctum')->group(function () {
-
     Route::apiResource('events', EventController::class);
     Route::apiResource('attendees', AttendeeController::class);
     Route::apiResource('categories', CategoryController::class);

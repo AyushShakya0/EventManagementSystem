@@ -47,6 +47,7 @@ class AttendeeController extends Controller
     public function destroy(Attendee $attendee)
     {
         $attendee->delete();
-        return response()->json(null, 204);
-    }
+        return response()->json([
+            'message' => 'Attendee deleted successfully',
+        ]);    }
 }
