@@ -29,10 +29,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', CategoryController::class);
 });
 
-// Route::resource('events', EventController::class);
-// Route::resource('attendees', AttendeeController::class);
-// Route::resource('categories', CategoryController::class);
-
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
