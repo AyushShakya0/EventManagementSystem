@@ -42,7 +42,7 @@ class AttendeeController extends Controller
      *     path="/api/attendees",
      *     summary="Get all attendees",
      *     tags={"Attendees"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Response(
      *         response=200,
      *         description="List of all attendees",
@@ -63,7 +63,7 @@ class AttendeeController extends Controller
      *     path="/api/attendees",
      *     summary="Create a new attendee",
      *     tags={"Attendees"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -103,7 +103,7 @@ class AttendeeController extends Controller
      *     path="/api/attendees/{id}",
      *     summary="Get an attendee by ID",
      *     tags={"Attendees"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -132,7 +132,7 @@ class AttendeeController extends Controller
      *     path="/api/attendees/{id}",
      *     summary="Update an attendee by ID",
      *     tags={"Attendees"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -181,7 +181,7 @@ class AttendeeController extends Controller
      *     path="/api/attendees/{id}",
      *     summary="Delete an attendee by ID",
      *     tags={"Attendees"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

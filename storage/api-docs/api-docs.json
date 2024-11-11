@@ -150,6 +150,41 @@
                 }
             }
         },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User logout",
+                "operationId": "ff979e4e699115485dc29fb752d8e3a5",
+                "responses": {
+                    "200": {
+                        "description": "Logout successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Logout Successful"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/user/profile": {
             "get": {
                 "tags": [
@@ -217,7 +252,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -279,7 +314,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             }
@@ -319,7 +354,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -390,7 +425,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -434,7 +469,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             }
@@ -463,7 +498,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -509,7 +544,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             }
@@ -548,7 +583,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -607,7 +642,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -637,7 +672,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             }
@@ -666,7 +701,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -739,7 +774,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             }
@@ -779,7 +814,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -866,7 +901,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             },
@@ -910,7 +945,7 @@
                 },
                 "security": [
                     {
-                        "bearer_token": []
+                        "bearerAuth": []
                     }
                 ]
             }

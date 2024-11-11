@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 /**
  * @OA\SecurityScheme(
- *     securityScheme="bearer_token",
+     *     security={{"bearerAuth":{}}},
  *     type="http",
  *     scheme="bearer",
  *     bearerFormat="JWT",
@@ -33,7 +33,7 @@ class CategoryController extends Controller
      *     path="/api/categories",
      *     summary="Get all categories",
      *     tags={"Categories"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Response(
      *         response=200,
      *         description="A list of categories",
@@ -54,7 +54,7 @@ class CategoryController extends Controller
      *     path="/api/categories",
      *     summary="Create a new category",
      *     tags={"Categories"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -88,7 +88,7 @@ class CategoryController extends Controller
      *     path="/api/categories/{category}",
      *     summary="Get a single category by ID",
      *     tags={"Categories"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="category",
      *         in="path",
@@ -116,7 +116,7 @@ class CategoryController extends Controller
      *     path="/api/categories/{category}",
      *     summary="Update an existing category",
      *     tags={"Categories"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="category",
      *         in="path",
@@ -160,7 +160,7 @@ class CategoryController extends Controller
      *     path="/api/categories/{category}",
      *     summary="Delete a category",
      *     tags={"Categories"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="category",
      *         in="path",

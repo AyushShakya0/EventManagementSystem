@@ -10,8 +10,11 @@ class AttendeeController extends Controller
 {
     public function index()
     {
-        $attendees = Attendee::all();
-        return view('attendees.index', compact('attendees'));
+        $attendees = Attendee::with('event')->get(); // Assuming Attendee has a relationship with Event
+        $events = Event::all();
+
+
+        return view('attendees.index', compact('attendees', 'events'));
     }
 
     public function create()
@@ -29,8 +32,17 @@ class AttendeeController extends Controller
             'event_id' => 'required|exists:events,id',
         ]);
 
-        Attendee::create($validatedData);
-        return redirect()->route('attendees.index')->with('success', 'Attendee created successfully');
+        $attendee = Attendee::create($validatedData);
+        // Return the new attendee with the event details included
+        return response()->json([
+            'id' => $attendee->id,
+            'name' => $attendee->name,
+            'email' => $attendee->email,
+            'phone' => $attendee->phone,
+            'event_id' => $attendee->event_id, // Send event ID
+            'event_title' => $attendee->event->title, // Send the event's title
+        ]);
+        // return redirect()->route('attendees.index')->with('success', 'Attendee created successfully');
     }
 
     public function show(Attendee $attendee)
@@ -54,12 +66,23 @@ class AttendeeController extends Controller
         ]);
 
         $attendee->update($validatedData);
-        return redirect()->route('attendees.index')->with('success', 'Attendee updated successfully');
+
+        // Return the new attendee with the event details included
+        return response()->json([
+            'id' => $attendee->id,
+            'name' => $attendee->name,
+            'email' => $attendee->email,
+            'phone' => $attendee->phone,
+            'event_id' => $attendee->event_id, // Send event ID
+            'event_title' => $attendee->event->title, // Send the event's title
+        ]);
     }
 
-    public function destroy(Attendee $attendee)
+    public function destroy($id)
     {
+        $attendee = Attendee::findOrFail($id);
         $attendee->delete();
-        return redirect()->route('attendees.index')->with('success', 'Attendee deleted successfully');
+
+        return response()->json(['success' => true, 'message' => 'Attendee deleted successfully']);
     }
 }

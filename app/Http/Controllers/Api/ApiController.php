@@ -143,6 +143,41 @@ class ApiController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/api/logout",
+     *     summary="User logout",
+     *     tags={"User"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Logout successful",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Logout Successful")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     */
+    public function logout(Request $request)
+    {
+        try {
+            // Revoke the token used for the current request
+            $request->user()->tokens->each(function ($token) {
+                $token->delete();
+            });
+
+            return response()->json([
+                "message" => "Logout Successful"
+            ]);
+        } catch (Exception $e) {
+            return response()->json([$e->getMessage()], 500);
+        }
+    }
+
+    /**
      * @OA\Get(
      *     path="/api/user/profile",
      *     summary="Get user profile",

@@ -44,7 +44,7 @@ class EventController extends Controller
      *     path="/api/events",
      *     summary="Get all events",
      *     tags={"Events"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Response(
      *         response=200,
      *         description="List of all events",
@@ -65,7 +65,7 @@ class EventController extends Controller
      *     path="/api/events",
      *     summary="Create a new event",
      *     tags={"Events"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -109,7 +109,7 @@ class EventController extends Controller
      *     path="/api/events/{id}",
      *     summary="Get an event by ID",
      *     tags={"Events"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -138,7 +138,7 @@ class EventController extends Controller
      *     path="/api/events/{id}",
      *     summary="Update an event by ID",
      *     tags={"Events"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -193,7 +193,7 @@ class EventController extends Controller
      *     path="/api/events/{id}",
      *     summary="Delete an event by ID",
      *     tags={"Events"},
-     *     security={{"bearer_token":{}}},
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
