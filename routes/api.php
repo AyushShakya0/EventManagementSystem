@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\AttendeeController;
 use App\Http\Controllers\Api\CategoryController;
